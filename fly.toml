@@ -1,4 +1,4 @@
-app = "editor-sample-2d51"
+app = "editor-sample"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
