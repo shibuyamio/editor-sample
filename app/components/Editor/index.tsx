@@ -8,7 +8,11 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-const theme = {};
+const theme = {
+  // 入力開始後の文字列の色
+  ltr: "ltr",
+  paragraph: "text-gray-800",
+};
 
 // When the editor changes, you can get notified via the
 // LexicalOnChangePlugin!
@@ -53,13 +57,21 @@ export default function Editor() {
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <PlainTextPlugin
-        contentEditable={<ContentEditable />}
-        placeholder={<div>文字を入力してください。。。</div>}
-      />
-      <OnChangePlugin onChange={onChange} />
-      <HistoryPlugin />
-      <MyCustomAutoFocusPlugin />
+      <div className="editor-container">
+        <PlainTextPlugin
+          contentEditable={
+            <ContentEditable className="border-1 prose m-6 h-48 border-solid border-gray-400 p-2 shadow-sm shadow-gray-200 focus:outline-none" />
+          }
+          placeholder={
+            <div className="mt-3 text-sm text-gray-500">
+              文字を入力してください。。。
+            </div>
+          }
+        />
+        <OnChangePlugin onChange={onChange} />
+        <HistoryPlugin />
+        <MyCustomAutoFocusPlugin />
+      </div>
     </LexicalComposer>
   );
 }
